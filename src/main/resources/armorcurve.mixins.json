@@ -1,12 +1,13 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.fabricmc.example.mixin",
+  "package": "jackiecrazy.armorcurve.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "ArmorDegradationMixin",
+    "DamageCalculatorMixin"
   ],
   "client": [
-    "ExampleMixin"
   ],
   "injectors": {
     "defaultRequire": 1
