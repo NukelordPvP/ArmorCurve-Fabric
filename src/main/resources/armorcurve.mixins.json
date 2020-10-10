@@ -5,7 +5,9 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "ArmorDegradationMixin",
-    "DamageCalculatorMixin"
+    "AttributeUpdater",
+    "DamageCalculatorMixin",
+    "ValueUpdateMixin"
   ],
   "client": [
   ],

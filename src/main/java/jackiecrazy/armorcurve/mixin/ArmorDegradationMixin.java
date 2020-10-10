@@ -25,7 +25,6 @@ import java.util.concurrent.TimeUnit;
 public abstract class ArmorDegradationMixin {
 
     private static final Cache<ItemStackKey, ImmutableMultimap<EntityAttribute, EntityAttributeModifier>> cache = CacheBuilder.newBuilder().weakKeys().expireAfterAccess(1, TimeUnit.SECONDS).build();
-    private static final UUID DEGRADATION = UUID.fromString("1e6caf73-8750-458c-902c-dcfb91ffb6b4");
 
     @Shadow
     public abstract Item getItem();
