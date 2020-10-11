@@ -24,8 +24,6 @@ import java.util.concurrent.TimeUnit;
 @Mixin(LivingEntity.class)
 public abstract class ValueUpdateMixin {
 
-    @Shadow public abstract AttributeContainer getAttributes();
-
     @Shadow public abstract EntityAttributeInstance getAttributeInstance(EntityAttribute attribute);
 
     private static final Cache<ItemStackKey, ImmutableMultimap<EntityAttribute, EntityAttributeModifier>> cache = CacheBuilder.newBuilder().weakKeys().expireAfterAccess(1, TimeUnit.SECONDS).build();
