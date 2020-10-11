@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class ArmorCurve implements ModInitializer {
 	public static CurveConfig config=null;
-	public static Expression[]formulae=new Expression[3];
+	public static Expression[]formulae=new Expression[4];
 	@Override
 	public void onInitialize() {
 		Logger.getLogger("armorcurve").log(Level.INFO, "armor curve loaded!");

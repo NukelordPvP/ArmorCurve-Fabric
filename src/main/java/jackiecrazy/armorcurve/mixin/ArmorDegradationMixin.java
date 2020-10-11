@@ -4,6 +4,7 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import jackiecrazy.armorcurve.ArmorCurve;
 import jackiecrazy.armorcurve.ItemStackKey;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
@@ -18,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+import java.math.BigDecimal;
 import java.util.concurrent.TimeUnit;
 
 @Mixin(ItemStack.class)
@@ -47,9 +49,10 @@ public abstract class ArmorDegradationMixin {
             ImmutableMultimap<EntityAttribute, EntityAttributeModifier> cached = cache.getIfPresent(isk);
             if (cached != null) info.setReturnValue(cached);
             ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> copy = ImmutableMultimap.builder();
+            float degrade= ArmorCurve.formulae[3].with("remaining", new BigDecimal(this.getMaxDamage()-this.getDamage())).and("max", new BigDecimal(this.getMaxDamage())).eval().floatValue();
             for (EntityAttribute e : m.keySet())
                 for (EntityAttributeModifier eam : m.get(e)) {
-                    EntityAttributeModifier degradedEAM = new EntityAttributeModifier(eam.getId(), eam.getName(), (1 - ((double) this.getDamage() / this.getMaxDamage())) * eam.getValue(), eam.getOperation());
+                    EntityAttributeModifier degradedEAM = new EntityAttributeModifier(eam.getId(), eam.getName(), (degrade) * eam.getValue(), eam.getOperation());
                     copy.put(e, degradedEAM);
                 }
             cached = copy.build();
