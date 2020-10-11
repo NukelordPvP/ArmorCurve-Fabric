@@ -14,7 +14,6 @@ public class CurveConfig implements ConfigData {
     public String armorToughness = "d-(d>40/(t+1))(d-40/(t+1))/2";
     @ConfigEntry.Gui.Tooltip()
     public String enchantments = "d*10/(10+e)";
-    //TODO use EvalEx to make a fully custom damage scaling formula!
 
     @Override
     public void validatePostLoad() throws ValidationException {
