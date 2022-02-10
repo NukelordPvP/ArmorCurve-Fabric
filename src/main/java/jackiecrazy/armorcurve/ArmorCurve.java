@@ -1,5 +1,6 @@
 package jackiecrazy.armorcurve;
 
+//adds EvalEx dependency and more
 import com.udojava.evalex.Expression;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.Toml4jConfigSerializer;

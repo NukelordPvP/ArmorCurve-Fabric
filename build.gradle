@@ -33,6 +33,7 @@ dependencies {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
 
+	//fixed EvalEx dependancy not being included by adding both of them lol
 	implementation 'com.udojava:EvalEx:2.7'
 	include 'com.udojava:EvalEx:2.7'
 }
