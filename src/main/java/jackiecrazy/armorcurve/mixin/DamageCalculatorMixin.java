@@ -17,20 +17,12 @@ import java.util.logging.Logger;
 public class DamageCalculatorMixin {
     @Inject(cancellable = true, at = @At("HEAD"), method = "getDamageLeft(FFF)F")
     private static void getDamageLeft(float damage, float armor, float armorToughness, CallbackInfoReturnable<Float> info) {
-        if (ArmorCurve.config == null || Arrays.stream(ArmorCurve.formulae).anyMatch(Objects::isNull)){
+        if (ArmorCurve.config == null || Arrays.stream(ArmorCurve.formulae).anyMatch(Objects::isNull)) {
             Logger.getLogger("armorcurve").log(Level.WARNING, "armor formulae loaded incorrectly! Double check your config!");
             return;
         }
         BigDecimal ret = ArmorCurve.formulae[0].with("damage", new BigDecimal(damage)).and("armor", new BigDecimal(armor)).and("toughness", new BigDecimal(armorToughness)).eval();
         ret = ArmorCurve.formulae[1].with("damage", ret).and("armor", new BigDecimal(armor)).and("toughness", new BigDecimal(armorToughness)).eval();
-//        float reduction = 1 + armor / 5;
-//        float afterDamage = damage / reduction;
-//
-//        if (armorToughness > 0) {
-//            float cap = 40 / armorToughness;
-//            if (afterDamage > cap)
-//                afterDamage -= (afterDamage - cap) / 2;
-//        }
         info.setReturnValue(ret.floatValue());
     }
 
@@ -39,7 +31,6 @@ public class DamageCalculatorMixin {
         if (ArmorCurve.config == null || Arrays.stream(ArmorCurve.formulae).allMatch(Objects::isNull)) return;
         BigDecimal ret = ArmorCurve.formulae[2].with("damage", new BigDecimal(damage)).and("enchant", new BigDecimal(prot)).eval();
 
-        //float reduction = 1 + prot / 5;
         info.setReturnValue(ret.floatValue());
     }
 }

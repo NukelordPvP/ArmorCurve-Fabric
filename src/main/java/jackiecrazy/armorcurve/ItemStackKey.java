@@ -16,8 +16,7 @@ public class ItemStackKey {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof ItemStackKey)) return false;
-        ItemStackKey other = (ItemStackKey) obj;
+        if (!(obj instanceof ItemStackKey other)) return false;
         return i == other.i && w == other.w && d == other.d;
     }
 }

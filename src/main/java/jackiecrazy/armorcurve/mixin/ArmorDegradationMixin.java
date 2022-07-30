@@ -49,7 +49,7 @@ public abstract class ArmorDegradationMixin {
             ImmutableMultimap<EntityAttribute, EntityAttributeModifier> cached = cache.getIfPresent(isk);
             if (cached != null) info.setReturnValue(cached);
             ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> copy = ImmutableMultimap.builder();
-            float degrade= ArmorCurve.formulae[3].with("remaining", new BigDecimal(this.getMaxDamage()-this.getDamage())).and("max", new BigDecimal(this.getMaxDamage())).eval().floatValue();
+            float degrade = ArmorCurve.formulae[3].with("remaining", new BigDecimal(this.getMaxDamage() - this.getDamage())).and("max", new BigDecimal(this.getMaxDamage())).eval().floatValue();
             for (EntityAttribute e : m.keySet())
                 for (EntityAttributeModifier eam : m.get(e)) {
                     EntityAttributeModifier degradedEAM = new EntityAttributeModifier(eam.getId(), eam.getName(), (degrade) * eam.getValue(), eam.getOperation());
