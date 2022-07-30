@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Armor Curve",
-  "description": "Linearizes the armor-effective max hp formula to buff early game armor. Updated to 1.18.1 by Nukelord420!!",
+  "description": "Linearizes the armor-effective max hp formula to buff early game armor. Updated to 1.19!!",
   "authors": [
     "Jackiecrazy",
     "Nukelord420",
@@ -29,11 +29,15 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.12.12",
+    "fabricloader": ">=0.14.8",
     "fabric": "*",
-    "minecraft": "1.18.x"
+    "minecraft": "1.19.x",
+    "cloth-config2": ">=7.0.72"
   },
   "suggests": {
     "flamingo": "*"
+  },
+  "includes": {
+    "EvalEx": "2.7"
   }
 }
